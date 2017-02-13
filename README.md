@@ -1,7 +1,7 @@
 # 依赖注入库 Dagger2 的使用方法
 Dagger2+ButterKnife+RxAndroid+RxJava+Retrofit+Annotation+RecyclerView综合应用
-推荐用法：Dagger2结合MVP实现完美的配合
 
+推荐用法：Dagger2结合MVP实现完美的配合
 
 
 基础概念：
@@ -10,11 +10,7 @@ Dagger2+ButterKnife+RxAndroid+RxJava+Retrofit+Annotation+RecyclerView综合应�
 * @Module 用Module标注的类是专门用来提供依赖的。有的人可能有些疑惑，看了上面的@Inject，需要在构造函数上标记才能提供依赖，那么如果我们需要提供 的类构造函数无法修改怎么办，比如一些jar包里的类，我们无法修改源码。这时候就需要使用Module了。Module可以给不能修改源码的类提供依 赖，当然，能用Inject标注的通过Module也可以提供依赖
 * @Component Component一般用来标注接口，被标注了Component的接口在编译时会产生相应的类的实例来作为提供依赖方和需要依赖方之间的桥梁，把相关依赖注入到其中。
 
-
-
 注意：在代码编写过程中 我们会发现DaggerActivityComponent会不存在，这是因为注入器是在编译的过程中才生成，所以我们在对注入器编写完成后Make Project 一下就会生成DaggerActivityComponent
-
-
 
 此处我们有两种方式可以提供依赖，一个是注解了@Inject的构造方法，一个是在Module里提供的依赖，那么Dagger2是怎么选择依赖提供的呢，规则是这样的：
 * 步骤1：查找Module中是否存在创建该类的方法。
@@ -24,10 +20,6 @@ Dagger2+ButterKnife+RxAndroid+RxJava+Retrofit+Annotation+RecyclerView综合应�
 * 步骤3：若不存在创建类方法，则查找Inject注解的构造函数，看构造函数是否存在参数
  * 步骤3.1：若存在参数，则从步骤1开始依次初始化每个参数
  * 步骤3.2：若不存在参数，则直接初始化该类实例，一次依赖注入到此结束
- 
-这次依赖注入就先写这么多，Dagger结合MVP实现完美的配合，小伙伴们可以自己去研究一下其中的奥妙~
-
-
 
 ```java
 dependencies {
